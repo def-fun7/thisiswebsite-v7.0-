@@ -1,0 +1,137 @@
+body{
+    overflow: hidden;
+
+}
+
+#main{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    border: red solid 2px;
+}
+
+p{
+    color: #f0f0f0;
+    font-size: large;
+    line-height: 2;
+    padding: 2px;
+    text-align: left;
+    align-self: center;
+    align-content: center;
+    margin-left : 40px;
+    margin-right : 40px;
+}
+
+#input{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    align-self: center;
+    width: 100%;
+    text-align: center; /* Example styling */
+    height: 9vh;
+}
+
+.styledBox{
+      background-color: transparent;
+      border: 1px solid whitesmoke;
+      padding: 3px;
+      text-align: center;
+      border-radius: 10%;
+      font-size: 20px;
+      color : #f0f0f0;
+    }
+
+#myInput{
+    align-self: center;
+    margin: 5px 0 22px 0;
+    border-radius: 15px;
+    box-shadow: 0 1px 2px rgba(0,0,0, 0.5);
+    padding: 8px;
+}
+
+.morse{
+    color: #feda4a;
+    font-size: large;
+}
+
+#inputLabel{
+    color: #f0f0f0;
+    font-size: large;
+}
+
+#output{
+    display: flex;
+    flex-direction: column;
+    height: 74vh;
+    overflow: auto;
+    padding: 10px;
+    
+}
+
+#output::-webkit-scrollbar {
+    width: 7px; /* Very thin scrollbar */
+}
+
+#output::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the scrollbar thumb */
+    border-radius: 5px; /* Rounded corners */
+}
+
+#output::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color of the scrollbar thumb on hover */
+}
+
+#output::-webkit-scrollbar-track {
+    background: transparent; /* Color of the scrollbar track */
+    border-radius: 5px;
+}
+
+#output::-webkit-scrollbar-track:hover {
+    background: #555;
+}
+
+.message {
+    border-radius: 10px; /* Rounded corners */
+    clear: both; /* Prevent floating issues */
+    max-width: 100%; /* Limit message width */    
+  }
+  
+.message-text {
+    margin: 1px; /* Remove default paragraph margins */
+    word-wrap: break-word; /* Prevent long words from breaking layout */
+    color: black;
+    margin-top: 10px;
+    margin-bottom: 10px; /* Spacing between messages */
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.user-message {
+    background-color: #6ae70a; /* Light green, similar to WhatsApp */
+    align-self: flex-end;
+    float: right; 
+    border-radius: 15px;
+    box-shadow: 0 1px 2px rgba(0,0,0, 0.5);
+    padding: 8px;
+}
+  
+  /* Styling for other users' messages (received) */
+.other-message {
+    background-color: #7a7af1; /* Light gray, similar to Telegram */
+    align-self: flex-start;
+    float: left; 
+    border-radius: 15px;
+    box-shadow: 0 1px 2px rgba(0,0,0, 0.5);
+    padding: 8px;
+}
+
+#glscreen{
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 0;
+}
