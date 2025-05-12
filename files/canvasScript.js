@@ -194,6 +194,7 @@ window.addEventListener('load', function(event){
 	image.onload = function() {
 		init(image);
 	}
+	document.getElementById('popup').style.display = "block"
 });
 
 

@@ -9,36 +9,26 @@
 </head>
 
 <body>
+    <div class="popup" id="popup">
+        <div class="top">
+            <button class="pageNo" id="pageNo">1/11</button>
+            <h2 class="head">Hello world </h2>
+            <button class="closeButton" id="close" onclick="closePopup()"><i class="fas fa-times"></i></button>
+        </div>
 
+        <div class="popuptext" id="myPopup">Few moments ago, not too far away ...</div>
+        
+        <div class="bottom">
+            <button class="back" id="back" onclick="back()">&lt;</button>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+            <button class="forward" id="forward" onclick="forward()">&gt;</button>
+        </div>
+    </div>
     
     <div id="main">
-            <div id="header">
-                <p> the height of the person 
-                    <label for="height"></label>
-                    <input type="number" title="height" id="height" class="styledBox" min="1" max="3" value="1" step="0.1">
-
-                    <label for="units"></label>
-                    <select id="units" class="styledBox" name="units" title="units">
-                    
-                        <option value="meters" >meters</option>
-                        <option value="centimeters" >centimeters</option>
-                        <option value="feet" >feet </option>
-                        <option value="inches" > inches</option>
-                    </select>
-
-                    giving the ideal mass for the black hole 
-                    <button id="bhMass" class="styledBox" type="button" onclick="unitConvert()">5.79e+7 M<sub>&#9737;</sub></button>
-
-                    and the real mass for the black hole <span id="realMass" class="styledBox"></span>
-
-                        <span id="diffMass"></span>. The name of the black hole is <span id="name" class="styledBox"></span>.
-
-                    The black hole has a right ascension of <span id="ra" class="styledBox"></span> and declination of <span id="dec" class="styledBox"></span>. it has a redshift of <span id="redshift" class="styledBox"></span>, which gives the comoving distance of the black hole <span id="comovingDistance" class="styledBox"></span>. the black hole is from when the universe was <span id="age" class="styledBox"></span> years old.
-
-                </p>
-
-            </div>
-
+        <div id="titlebar">
+            <button id="info"><i class="fas fa-info-circle"></i></button>
+            <h1 class="title">L'appel au Vide</h1>
+        </div>
         <div id="output" class="message"></div>
 
         <div id="input">
