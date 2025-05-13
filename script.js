@@ -132,7 +132,7 @@ function toMorse() {
         var chrDic = charCount(morse);
         if (i === 1){
             ctime = math.evaluate('(dots * dur_dot_A) + (spc * dur_dot_A) + (dashes * dur_dash_A) to s', {dots: chrDic.dot, spc: chrDic.spc, dashes: chrDic.dash, dur_dot_A:quantitiesM.dur_dot_A, dur_dash_A: quantitiesM.dur_dash_A});
-            inputLabel.innerHTML = 'Faye';
+            inputLabel.innerHTML = 'Faya';
             i = 0;
         }else if(i === 0){
             ctime = math.evaluate('(dots * dur_dot_B) + (spc * dur_dot_B) + (dashes * dur_dash_B) to s', {dots: chrDic.dot, spc: chrDic.spc, dashes: chrDic.dash, dur_dot_B:quantitiesM.dur_dot_B, dur_dash_B: quantitiesM.dur_dash_B});
