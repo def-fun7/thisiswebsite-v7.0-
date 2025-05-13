@@ -400,7 +400,6 @@ function closePopup(){
 }
 
 function openPopup(){
-    
     popup.style.display = "block";
     input.style.display = "none";
     titlebar.style.display = "none";
@@ -412,13 +411,10 @@ function back(){
         pageNo -= 1;
         pageNum.innerHTML = pageNo+'/11';
         myPopup.innerHTML = a[pageNo-1];
-    }
-
-    
+    }    
     if(pageNo >5 && pageNo <9){
         eval('slide'+pageNo+'change()');
     }
-
 }
 
 function forward(){
@@ -427,13 +423,11 @@ function forward(){
         pageNum.innerHTML = pageNo +'/11';
         myPopup.innerHTML = a[pageNo-1];
     }
-
     if(pageNo >5 && pageNo <9){
         eval('slide'+pageNo+'change()');
     } else if (pageNo > 11){
         closePopup()
     }
-
 }
 
 document.addEventListener("keydown", function(event){
