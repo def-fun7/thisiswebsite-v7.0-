@@ -61,7 +61,6 @@ p{
       padding: 3px;
       text-align: center;
       border-radius: 10%;
-      font-size: 20px;
       color : #f0f0f0;
     }
 
@@ -160,17 +159,19 @@ p{
 .popup{
     background-image: linear-gradient(90deg, rgb(133, 130, 130, 0.5), rgb(37, 37, 37, 1) );
     opacity: 90%;
-    width: 450px;
+    height: auto;
+    width: 60%;
     padding: 30px 40px;
     position: absolute;
     transform: translate(-50%,-50%);
     left: 50%;
     top: 50%;
-    border-radius: 8px;
+    border-radius: 10%;
     font-family: "Poppins",sans-serif;
     display: block;
     text-align: center;
     border: aliceblue dashed 2px;
+    overflow: auto;
     z-index: 4;
 }
 
@@ -223,4 +224,5 @@ button{
     color: black;
     font-size: 17px;
     color: aliceblue;
+    line-height: 2;
 }
