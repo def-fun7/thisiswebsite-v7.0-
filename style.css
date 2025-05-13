@@ -127,7 +127,7 @@ p{
     margin-top: 10px;
     margin-bottom: 10px; /* Spacing between messages */
     padding-top: 12px;
-    padding-bottom: 12px;
+    padding-bottom: 10px;
 }
 
 .user-message {
@@ -160,7 +160,9 @@ p{
     background-image: linear-gradient(90deg, rgb(133, 130, 130, 0.5), rgb(37, 37, 37, 1) );
     opacity: 90%;
     height: auto;
-    width: 60%;
+    width: auto%;
+    min-width: 30%;
+    max-height: 70%;
     padding: 30px 40px;
     position: absolute;
     transform: translate(-50%,-50%);
@@ -225,4 +227,12 @@ button{
     font-size: 17px;
     color: aliceblue;
     line-height: 2;
+}
+
+.smallText{
+    font-size: xx-small;
+    text-align: inherit;
+    color: white;
+    margin-right: 0;
+    margin-left: 0;    
 }

@@ -3,6 +3,9 @@ let msg, morse, textTimeA, textTimeB;
 const sMu       = math.createUnit('solMass', '1.989e+30 kg');
 
 let i = 1;
+let pageNo = 1;
+let messageCount = 0;
+var l = [];
 
 const input = document.getElementById('input');
 const myInput = document.getElementById("myInput");
@@ -19,9 +22,6 @@ const closeB = document.getElementById('close');
 const pagesB = document.getElementById('pageNo');
 const backB = document.getElementById('back');
 const forwardB = document.getElementById('forward'); 
-
-let pageNo = 1;
-var l = [];
 
 var slides = {
      s1 : `Few moments ago, not too far away ...`,
@@ -93,26 +93,6 @@ var slides = {
      s11 : `so...`
 };
 
-
-function slide8change(){
-    var quantities8 = l[0];
-    document.getElementById('obs_w').innerHTML = quantities8.obs_w.format(3);
-    document.getElementById('obs_w3').innerHTML = quantities8.obs_w.format(3) ;
-    document.getElementById('obs_w2').innerHTML = quantities8.obs_w.format(3) ;
-    document.getElementById('t_do').innerHTML = quantities8.dur_dot.format(3);
-    document.getElementById('t_do1').innerHTML = quantities8.dur_dot.format(3) ;
-    document.getElementById('t_da').innerHTML = quantities8.dur_dash.format(3) ;
-    document.getElementById('t_da1').innerHTML = quantities8.dur_dash.format(3) ;
-    document.getElementById('z_g').innerHTML = parseFloat(quantities8.z).toExponential(2) ;
-    document.getElementById('em_b').innerHTML = quantities8.em_wB.format(3) ;
-    document.getElementById('em_a').innerHTML = quantities8.em_wA.format(3) ;
-    document.getElementById('t_oB').innerHTML = quantities8.dur_dot_B.format(3) ;
-    document.getElementById('t_daB').innerHTML = quantities8.dur_dash_B.format(3) ;
-    document.getElementById('t_oA').innerHTML = quantities8.dur_dot_A.format(3) ;
-    document.getElementById('t_daA').innerHTML = quantities8.dur_dot_B.format(3) ;
-    document.getElementById('sig_tr_time').innerHTML = quantities8.sig_tra_time.format(3);
-}
-
 var a = [slides.s1, slides.s2, slides.s3, slides.s4, slides.s5, slides.s6, slides.s7, slides.s8, slides.s9, slides.s10, slides.s11];
 
 
@@ -136,21 +116,30 @@ var range = {
     }
 }
 
+var now = new Date().getTime();
+
 function toMorse() {
+    messageCount += 1;
+    var quantitiesM = l[0];
+
     msg = myInput.value;
     morse = morjs.encode(msg);
     var chrDic = charCount(morse);
     if (i === 1){
-        // time = math.evaluate('(dots * dur_dot_A) + (spc * dur_dot_A) + (dashes * dur_dash_A) to s', {dots: chrDic.dot, spc: chrDic.spc, dashes: chrDic.dash, dur_dot_A:dur_dot_A, dur_dash_A: dur_dash_A});
+        ctime = math.evaluate('(dots * dur_dot_A) + (spc * dur_dot_A) + (dashes * dur_dash_A) to s', {dots: chrDic.dot, spc: chrDic.spc, dashes: chrDic.dash, dur_dot_A:quantitiesM.dur_dot_A, dur_dash_A: quantitiesM.dur_dash_A});
         inputLabel.innerHTML = 'Person B';
         i = 0;
     }else if(i === 0){
-        // time = math.evaluate('(dots * dur_dot_B) + (spc * dur_dot_B) + (dashes * dur_dash_B) to s', {dots: chrDic.dot, spc: chrDic.spc, dashes: chrDic.dash, dur_dot_B:dur_dot_B, dur_dash_B: dur_dash_B});
+        ctime = math.evaluate('(dots * dur_dot_B) + (spc * dur_dot_B) + (dashes * dur_dash_B) to s', {dots: chrDic.dot, spc: chrDic.spc, dashes: chrDic.dash, dur_dot_B:quantitiesM.dur_dot_B, dur_dash_B: quantitiesM.dur_dash_B});
         inputLabel.innerHTML = 'Person A';
         i = 1;
     }
-    time = 0;
-    newDiv(morse, msg, time);
+    
+    var ct = now + ctime.toNumber('milliseconds');
+    var rt = ct + quantitiesM.sig_tra_time.toNumber('milliseconds')
+    console.log(rt);
+    newDiv(morse, msg, ct, rt);
+    now = ct;
     myInput.value = 'Add text';
     output.scrollTop = output.scrollHeight; 
     
@@ -200,7 +189,7 @@ function unitConvert(magnitude, units, bhMass, bhName, bhName2, redshift) {
 
 }
 
-function newDiv(morse, msg, time){
+function newDiv(morse, msg, ctime, rtime){
     const newDiv = document.createElement('p');
     newDiv.classList.add('message-text', 'morse');
     newDiv.id = 'text';
@@ -212,6 +201,7 @@ function newDiv(morse, msg, time){
 
     newDiv.onmouseout = function(){
         newDiv.innerText = morse;
+        newDiv.appendChild(timeInfo)
     }
 
     if (i ===0){
@@ -224,22 +214,17 @@ function newDiv(morse, msg, time){
         send.style.color = 'green';
     }
 
-    const infoButton = document.createElement('i');
-    infoButton.id = 'info';
-    infoButton.classList.add('fas', 'fa-info-circle');
-    infoButton.style.fontSize = '16px';
-    infoButton.style.cursor = 'pointer';
+    const timeInfo = document.createElement('p');
+    timeInfo.id = 'timeInfo';
+    timeInfo.classList.add('smallText');
+    
+    timeInfo.textContent = 'Composed at: ' + new Date(ctime).toString().split('GMT')[0];
+    // timeInfo.innerHTML += " <br> sent at " + new Date(rtime).toString().split('GMT')[0];
+    
 
-    infoButton.onmouseover = function(){
-        infoButton.innerHTML = "<b>Text Time:</b> "+time + '<br>' + "<b>Message: </b>" + msg;
-    }
-
-    infoButton.onmouseout = function(){
-        infoButton.innerHTML = "";
-    }
-
+    newDiv.appendChild(timeInfo)
     output.appendChild(newDiv);
-    // outputDiv.appendChild(infoButton);
+    
 }
 
 function charCount(str){
@@ -375,8 +360,31 @@ function slide7change(){
     
 }
 
+function slide8change(){
+    var quantities8 = l[0];
+    document.getElementById('obs_w').innerHTML = quantities8.obs_w.format(3);
+    document.getElementById('obs_w3').innerHTML = quantities8.obs_w.format(3) ;
+    document.getElementById('obs_w2').innerHTML = quantities8.obs_w.format(3) ;
+    document.getElementById('t_do').innerHTML = quantities8.dur_dot.format(3);
+    document.getElementById('t_do1').innerHTML = quantities8.dur_dot.format(3) ;
+    document.getElementById('t_da').innerHTML = quantities8.dur_dash.format(3) ;
+    document.getElementById('t_da1').innerHTML = quantities8.dur_dash.format(3) ;
+    document.getElementById('z_g').innerHTML = parseFloat(quantities8.z).toExponential(2) ;
+    document.getElementById('em_b').innerHTML = quantities8.em_wB.format(3) ;
+    document.getElementById('em_a').innerHTML = quantities8.em_wA.format(3) ;
+    document.getElementById('t_oB').innerHTML = quantities8.dur_dot_B.format(3) ;
+    document.getElementById('t_daB').innerHTML = quantities8.dur_dash_B.format(3) ;
+    document.getElementById('t_oA').innerHTML = quantities8.dur_dot_A.format(3) ;
+    document.getElementById('t_daA').innerHTML = quantities8.dur_dot_B.format(3) ;
+    document.getElementById('sig_tr_time').innerHTML = quantities8.sig_tra_time.format(3);
+}
 
 function closePopup(){
+    if (pageNo <5){
+            myPopup.display = "none"
+            myPopup.innerHTML = a[5];
+            slide6change()
+        }
     popup.style.display = "none";
     input.style.display = "block";
     titlebar.style.display = "block"
@@ -388,10 +396,16 @@ function back(){
         pageNum.innerHTML = pageNo+'/11';
         myPopup.innerHTML = a[pageNo-1];
     }
+
+    
+    if(pageNo >5 && pageNo <9){
+        eval('slide'+pageNo+'change()');
+    }
+
 }
 
 function forward(){
-    if (pageNo <11){
+    if (pageNo <12){
         pageNo += 1;
         pageNum.innerHTML = pageNo +'/11';
         myPopup.innerHTML = a[pageNo-1];
@@ -399,10 +413,21 @@ function forward(){
 
     if(pageNo >5 && pageNo <9){
         eval('slide'+pageNo+'change()');
+    } else if (pageNo > 11){
+        closePopup()
     }
 
 }
 
+document.addEventListener("keydown", function(event){
+    if (event.key === "ArrowRight"|| event.key === "ArrowUp" || event.key === "PgUp"){
+        forwardB.click();
+    }else if (event.key === "ArrowLeft" || event.key === "ArrowDown" || event.key === "PgDn"){
+        backB.click();
+    }else if (event.key === "Delete"){
+        closeB.click();
+    }
+});
 
 myInput.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
