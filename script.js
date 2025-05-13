@@ -392,6 +392,7 @@ function closePopup(){
             myPopup.innerHTML = a[5];
             slide6change()
         }
+    pageNo = 0;
     myPopup.innerHTML = a[0];     
     pageNum.innerHTML = '1/11';      
     popup.style.display = "none";
