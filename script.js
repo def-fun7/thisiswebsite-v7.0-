@@ -460,7 +460,6 @@ myInput.addEventListener("keydown", function(event) {
       btn.click();
       window.scrollTo(0, output.scrollHeight)
     }
-
 });
 
 closeB.addEventListener('mouseover', () => {
@@ -478,7 +477,3 @@ backB.addEventListener('mouseover', () => {
 forwardB.addEventListener('mouseover', () => {
     forwardB.setAttribute('title', 'Go to Next Slide');
 });
-
-
-
-// document.onload = unitConvert();
