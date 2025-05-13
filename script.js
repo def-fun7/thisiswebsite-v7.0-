@@ -65,7 +65,7 @@ var slides = {
             worlds apart...
             but not separate ways...`,
 
-     s8 : `like any good friends who have lived in the universe together long enough, they had a contengcy plan, "flash messages".
+     s8 : `like any good friends who have lived in the universe together long enough, they had a contingency plan, "flash messages".
             The method was quite simple and as long as the laws of the universe doesn't suddenly decided to go bananas, workable.
 
             They would uses flashes of light to send each other messages, to communicate. (there is always a way). 
