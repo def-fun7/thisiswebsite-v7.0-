@@ -396,7 +396,7 @@ function closePopup(){
     popup.style.display = "none";
     input.style.display = "block";
     titlebar.style.display = "block";
-    output.style.display = "block"
+    output.style.display = "flex"
 }
 
 function openPopup(){
@@ -404,7 +404,7 @@ function openPopup(){
     pageNo = 0;
     myPopup.innerHTML = a[0];     
     pageNum.innerHTML = '1/11';
-    
+
     popup.style.display = "block";
     input.style.display = "none";
     titlebar.style.display = "none";
