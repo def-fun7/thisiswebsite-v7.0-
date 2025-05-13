@@ -392,19 +392,24 @@ function closePopup(){
             myPopup.innerHTML = a[5];
             slide6change()
         }
-    pageNo = 0;
-    myPopup.innerHTML = a[0];     
-    pageNum.innerHTML = '1/11';      
+      
     popup.style.display = "none";
     input.style.display = "block";
     titlebar.style.display = "block";
+    output.style.display = "block"
 }
 
 function openPopup(){
+    
+    pageNo = 0;
+    myPopup.innerHTML = a[0];     
+    pageNum.innerHTML = '1/11';
+    
     popup.style.display = "block";
     input.style.display = "none";
     titlebar.style.display = "none";
     output.style.display = "none"
+
 }
 
 function back(){
