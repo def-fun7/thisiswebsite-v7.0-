@@ -12,7 +12,7 @@
     <div class="popup" id="popup">
         <div class="top">
             <button class="pageNo" id="pageNo">1/11</button>
-            <h2 class="head">Hello world </h2>
+            <h2 class="head">inanis ab initio </h2>
             <button class="closeButton" id="close" onclick="closePopup()"><i class="fas fa-times"></i></button>
         </div>
 
@@ -26,17 +26,29 @@
     
     <div id="main">
         <div id="titlebar">
-            <button id="info"><i class="fas fa-info-circle"></i></button>
             <h1 class="title">L'appel au Vide</h1>
+            <button id="info" class="infoB"><i class="fas fa-info-circle"></i></button>
+            <div id="infoC" class="infoC">
+                <h2>About</h2>
+                This was basically for fun... <br>
+                among other things... <br>
+                like what if? <br> 
+                and some questions ... <br>
+                <br>
+                To read in more detail ... <br>
+
+                <button id="openPopup" class="openPopup" onclick="openPopup()">Click to reread the story </button><br>
+                
+            </div>
         </div>
         <div id="output" class="message"></div>
 
         <div id="input">
-            <label id="inputLabel" for="myInput">Person A</label> <input type="text" id="myInput" value="Hello World">
+            <label id="inputLabel" for="myInput">Umiko</label> <input type="text" id="myInput" value="Ground Control to Major Tom!">
             <button id="btn" onclick="toMorse()"><i id="send" class="fas fa-paper-plane" style="font-size:19px ; padding: 3px; border-radius: 50%; background-color: transparent; color: green;"></i></button>
         </div>
-
     </div>
+
     <canvas id="glscreen"></canvas>
 
     <script src="https://cdn.jsdelivr.net/gh/neocotic/mor.js@master/mor.js"></script>

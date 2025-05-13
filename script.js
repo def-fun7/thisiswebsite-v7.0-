@@ -14,6 +14,8 @@ const output = document.getElementById('output');
 const btn = document.getElementById('btn');
 const send = document.getElementById('send')
 
+const infoB = document.getElementById('info');
+const infoC = document.getElementById('infoC')
 const titlebar = document.getElementById('titlebar');
 const popup = document.getElementById('popup');
 const pageNum = document.getElementById('pageNo');
@@ -123,25 +125,30 @@ function toMorse() {
     var quantitiesM = l[0];
 
     msg = myInput.value;
-    morse = morjs.encode(msg);
-    var chrDic = charCount(morse);
-    if (i === 1){
-        ctime = math.evaluate('(dots * dur_dot_A) + (spc * dur_dot_A) + (dashes * dur_dash_A) to s', {dots: chrDic.dot, spc: chrDic.spc, dashes: chrDic.dash, dur_dot_A:quantitiesM.dur_dot_A, dur_dash_A: quantitiesM.dur_dash_A});
-        inputLabel.innerHTML = 'Person B';
-        i = 0;
-    }else if(i === 0){
-        ctime = math.evaluate('(dots * dur_dot_B) + (spc * dur_dot_B) + (dashes * dur_dash_B) to s', {dots: chrDic.dot, spc: chrDic.spc, dashes: chrDic.dash, dur_dot_B:quantitiesM.dur_dot_B, dur_dash_B: quantitiesM.dur_dash_B});
-        inputLabel.innerHTML = 'Person A';
-        i = 1;
+    if (msg.length === 0){
+        alert("type something you idiot")
+    }else{
+        morse = morjs.encode(msg);
+        var chrDic = charCount(morse);
+        if (i === 1){
+            ctime = math.evaluate('(dots * dur_dot_A) + (spc * dur_dot_A) + (dashes * dur_dash_A) to s', {dots: chrDic.dot, spc: chrDic.spc, dashes: chrDic.dash, dur_dot_A:quantitiesM.dur_dot_A, dur_dash_A: quantitiesM.dur_dash_A});
+            inputLabel.innerHTML = 'Faye';
+            i = 0;
+        }else if(i === 0){
+            ctime = math.evaluate('(dots * dur_dot_B) + (spc * dur_dot_B) + (dashes * dur_dash_B) to s', {dots: chrDic.dot, spc: chrDic.spc, dashes: chrDic.dash, dur_dot_B:quantitiesM.dur_dot_B, dur_dash_B: quantitiesM.dur_dash_B});
+            inputLabel.innerHTML = 'Umiko';
+            i = 1;
+        }
+        
+        var ct = now + ctime.toNumber('milliseconds');
+        var rt = ct + quantitiesM.sig_tra_time.toNumber('milliseconds')
+        console.log(rt);
+        newDiv(morse, msg, ct, rt);
+        now = ct;
+        myInput.value = '';
+        output.scrollTop = output.scrollHeight; 
+        
     }
-    
-    var ct = now + ctime.toNumber('milliseconds');
-    var rt = ct + quantitiesM.sig_tra_time.toNumber('milliseconds')
-    console.log(rt);
-    newDiv(morse, msg, ct, rt);
-    now = ct;
-    myInput.value = 'Add text';
-    output.scrollTop = output.scrollHeight; 
     
 }
 
@@ -384,10 +391,18 @@ function closePopup(){
             myPopup.display = "none"
             myPopup.innerHTML = a[5];
             slide6change()
+            myPopup.innerHTML = a[0];
         }
     popup.style.display = "none";
     input.style.display = "block";
-    titlebar.style.display = "block"
+    titlebar.style.display = "block";
+}
+
+function openPopup(){
+    
+    popup.style.display = "block";
+    input.style.display = "none";
+    titlebar.style.display = "none";
 }
 
 function back(){
@@ -420,14 +435,28 @@ function forward(){
 }
 
 document.addEventListener("keydown", function(event){
-    if (event.key === "ArrowRight"|| event.key === "ArrowUp" || event.key === "PgUp"){
+    if (event.key === "ArrowRight" || event.key === "PgUp"){
         forwardB.click();
-    }else if (event.key === "ArrowLeft" || event.key === "ArrowDown" || event.key === "PgDn"){
+    }else if (event.key === "ArrowLeft" || event.key === "PgDn"){
         backB.click();
     }else if (event.key === "Delete"){
         closeB.click();
     }
 });
+
+infoB.addEventListener('mouseover', ()=> {
+    infoC.style.display = 'block'
+})
+
+infoB.addEventListener('mouseleave', ()=> {
+    setTimeout(()=>{
+        infoC.style.display = 'none'
+    }, 7000)
+})
+
+infoC.addEventListener('mouseleave', ()=> {
+    infoC.style.display = 'none'
+})
 
 myInput.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
@@ -437,7 +466,6 @@ myInput.addEventListener("keydown", function(event) {
     }
 
 });
-
 
 closeB.addEventListener('mouseover', () => {
     closeB.setAttribute('title', 'close');
