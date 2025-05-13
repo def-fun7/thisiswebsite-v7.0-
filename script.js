@@ -391,8 +391,9 @@ function closePopup(){
             myPopup.display = "none"
             myPopup.innerHTML = a[5];
             slide6change()
-            myPopup.innerHTML = a[0];
         }
+    myPopup.innerHTML = a[0];     
+    pageNum.innerHTML = '1/11';      
     popup.style.display = "none";
     input.style.display = "block";
     titlebar.style.display = "block";
