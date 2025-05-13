@@ -214,11 +214,11 @@ function newDiv(morse, msg, ctime, rtime){
     if (i ===0){
         newDiv.classList.add('user-message');
         newDiv.style.textAlign = 'right';
-        send.style.color = 'blue';
+        send.style.color = 'black';
     }else if(i ===1){
         newDiv.classList.add('other-message');
         newDiv.style.textAlign = 'left';
-        send.style.color = 'green';
+        send.style.color = 'blue';
     }
 
     const timeInfo = document.createElement('p');
@@ -403,6 +403,7 @@ function openPopup(){
     popup.style.display = "block";
     input.style.display = "none";
     titlebar.style.display = "none";
+    output.style.display = "none"
 }
 
 function back(){

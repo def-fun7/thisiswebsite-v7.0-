@@ -151,24 +151,27 @@ p{
 }
 
 .user-message {
-    background-color: #6ae70a; /* Light green, similar to WhatsApp */
+    background-image: linear-gradient(90deg, rgb(133, 130, 130, 0.5), rgb(122, 108, 201) );
     align-self: flex-end;
     float: right; 
     border-radius: 30px;
     border-bottom-right-radius: 0%;
     box-shadow: 0 1px 2px rgba(0,0,0, 0.5);
     padding: 8px;
+    font-size: large;
 }
   
   /* Styling for other users' messages (received) */
 .other-message {
-    background-color: #7a7af1; /* Light gray, similar to Telegram */
+    background-image: linear-gradient(90deg, rgb(133, 130, 130, 0.5), rgb(45, 45, 46) );
     align-self: flex-start;
     float: left; 
     border-radius: 30px;
     border-bottom-left-radius: 0%;
     box-shadow: 0 1px 2px rgba(0,0,0, 0.5);
     padding: 8px;
+    color: white;
+    font-size: large;
 }
 
 #glscreen{
