@@ -1,10 +1,14 @@
+// it was fun writing this... crying-in-the-bleachers-saying-it-was-fun-kinda-fun
+
 let msg, morse, textTimeA, textTimeB;
 
 const sMu       = math.createUnit('solMass', '1.989e+30 kg');
+const billyr     = math.createUnit('TrillionYears', '10e12 years');
 
 let i = 1;
 let pageNo = 1;
-let messageCount = 0;
+let messageCount =0;
+var longPages = [2, 3];
 var l = [];
 
 const input = document.getElementById('input');
@@ -26,73 +30,323 @@ const backB = document.getElementById('back');
 const forwardB = document.getElementById('forward'); 
 
 var slides = {
-     s1 : `Few moments ago, not too far away ...`,
-     s2 : `there was a cat that lived on a strange blue planet. Very little is known about its home planet and far more less about the cat itself. its name is long lost to the anuals of history. some even doubt it ever existed. All that remains are some fragments from a document titled, 'Perhaps Diary', that only contains what can only be described as peculiar 'thought experiments'. Only few of them has been translated and made public in their entirety.` ,
-     s3 : `This one is one of the partially recovered experiment, titled, 'la-', and goes like,`,
-     s4 : `Imagine two beings.`,
-     s5 : ` let's name them "umiko" and "faya", because... somethings are better mysterious.`,
-     s6 : `umiko is a 
-                <label for="height"></label>
-                    <input type="number" title="height" id="height" class="styledBox" min="1" max="3" value="1" step="0.1">
+     s1 : `Few moments ago, not too far away...`,
+     s2 : `<p> 
+                There was a cat, that presumably lived on a strange blue planet. 
+                Very little is known about its home planet and even far more less about the cat itself. 
+                Its name, if it ever had one, is long lost to the annuals of history.
+            </p>
 
-                    <label for="units"></label>
-                    <select id="units" class="styledBox" name="units" title="units">
-                    
-                        <option value="meters" >meters</option>
-                        <option value="centimeters" >centimeters</option>
-                        <option value="feet" >feet </option>
-                        <option value="inches" > inches</option>
-                    </select> 
+            <p class="noIndent">
+                Some even doubt it ever existed. 
+            </p>
 
-             female from a species called "humankind" where the heights range from <span id="minMaxunit" class="styledBox">1 to 3 meters</span>. Her height (they use different pronouns for different species (because... well ask them) and for females they use "she/her") is important because of where she lives.
+            <p>
+                All that remains are some fragments from a document titled, 
+                <span class="styledBox">
+                    "Perhaps Diary"
+                </span>, 
+                that only contains what can only be described as peculiar 
+                <span class="styledBox">
+                    "thought experiments".
+                </span>. 
+            </p>
+            <p class="noIndent">
+                Only few of them has been translated and made public in their entirety.
+            </p>
+            ` ,
+     s3 : `<p>
+                This is mostly based on one of the partially recovered experiments from the aforementioned document, titled, 
+            </p>
+            <p style="text-align: center; text-indent:0; font-size:x-large; margin-bottom: 5px;">
+                <span class="styledBox" >
+                    L'appel au Vide
+                </span>,
+            </p>
+            <p class="noIndent">
+                which translates to 
+                <span class="styledBox">
+                    "Call at the Void"
+                </span>,
+                 and goes like,
+            </p>`,
+     s4 : `<p style="text-align: center; text-indent:0; margin-bottom: 5px;">
+                Imagine two beings of reasonable intellect and resilient as well as reliable friendship. 
+            </p>`,
+     s5 : `<p style="text-align: center; text-indent:0; margin-bottom: 5px;">
+                Let's name them "Faye" and "Umiko".
+            </p>
+            <p style="text-align: center; text-indent:0; margin-bottom: 5px;">
+                <div class="why" style="cursor: pointer;"> 
+                    (why???)
+                    <span class="hiddenwhy" style="top:0; left:0;"> 
+                        (because... somethings are better mysterious.) 
+                    </span>
+                </div>
+            </p>`,
+     s6 : `<p>
+                Faye is a 
+                    <label for="height"></label>
+                        <input type="number" title="height" id="height" class="styledBox" min="1" max="3" value="1" step="0.1">
 
-            and she lives just a <span id="properDistance" class="styledBox"></span> from the event horizon (according to herself) of a schwarzchild black hole, whose mass is tied to her height in an elegant mathematical way. The black hole is just enough massive so that at it's event horizon, the gravitational gradient or tidal forces is same as they would be for a person with an height of one meter at her home planet. This is so she doesn't get sphegatiffied. 
+                        <label for="units"></label>
+                        <select id="units" class="styledBox" name="units" title="units">
+                        
+                            <option value="meters" >meters</option>
+                            <option value="centimeters" >centimeters</option>
+                            <option value="feet" >feet </option>
+                            <option value="inches" > inches</option>
+                        </select> 
+                tall female member of a species called "humankind", that also inhabit this planet and on average have heights ranging from 
+                <span id="minMaxunit" class="styledBox">
+                    1 to 3 meters
+                </span>. 
+            </p>
+            <p>
+                Her height (they use different pronouns for different genders
+                <span class="why" style="cursor: pointer;"> 
+                    (why???)
+                    <span class="hiddenwhy"> 
+                        (well, ask them) 
+                    </span>
+                </span> 
+                and for females they use "she/her") is important because of where she lives.
+                <span class="why" style="cursor: pointer; font-size:small;"> 
+                    (Her gender)
+                    <span class="hiddenwhy"> 
+                        (is interesting because male of that species are reportedly more moronic.) 
+                    </span>
+                </span>
+            </p>            
+            <p>
+                And she lives according to her measurements, just 
+                <span id="properDistance" class="styledBox"></span> 
+                from the event horizon of a 
+                <span class="styledBox">
+                    Schwarzchild black hole
+                </span>, 
+                whose mass is tied to her height in an elegant mathematical way. 
+                The black hole is just enough massive so that at it's event horizon, 
+                the gravitational gradient or tidal forces is same as they would be for a person with an height of one meter at our home planet. 
+                This is so she doesn't get sphegattified. 
+            </p>
 
-            As her height changes so does the mass <span id="idealBHMass" class="styledBox"></span> of the black hole. (try it)
+            <p class="noIndent">
+                As her height changes so does the mass 
+                <span id="idealBHMass" class="styledBox"></span> 
+                of the black hole. (try it)
+            </p>
+            <p> 
+                Based on her current height, she is living around a black hole named 
+                <span id="sdssname" class="styledBox"></span>, 
+                <span class="why" style="cursor: pointer;"> 
+                    (why???)
+                    <span class="hiddenwhy"> 
+                        (dunno) 
+                    </span>
+                </span> 
+                that has a mass of 
+                <span id="realMass" class="styledBox"></span>, 
+                which is 
+                <span id="diffMass"></span> 
+                because universe isn't ideal.  
+                <span id="sdssname2" class="styledBox"></span> 
+                is located at right ascension of 
+                <span id="ra" class="styledBox"></span> 
+                decimal degrees and declination of 
+                <span id="dec" class="styledBox"></span> 
+                decimal degrees from our home planet, according to a catalogue of QSOs named
+                <span class="styledBox" style="margin-right:7px;"> 
+                    "SDSS dr14"
+                </span>
+                and has a event horizon at 
+                <span id="rs" class="styledBox"></span>, 
+                which is also it's schwarzchild radius.
+            </p>
+            <p>
+            From her home planet prespective, the black hole has a 
+            <span class="why" style="cursor: pointer;"> 
+                    comoving distance 
+                    <span class="hiddenwhy"> 
+                        (distance between her home planet and the bh considering no expansion of the universe) 
+                    </span>
+            </span> 
+             of 
+            <span id="comovingDistance" class="styledBox"></span> 
+            and cosmological redshift factor of 
+            <span id="redshiftC" class="styledBox"></span>.
+            From there, the black hole can be seen as it was when universe was 
+            <span id="age" class="styledBox"></span> 
+            years old, because light takes time to travel.
+            </p>
+            <p class="noIndent">
+            But that is enough about Faye. Let's talk about Umiko.
+            </p>` ,
 
-            based on her current height, she is living around a black hole named <span id="sdssname" class="styledBox"></span>, (don't ask why it's called that), that has a mass of <span id="realMass" class="styledBox"></span>, which is <span id="diffMass"></span> because universe isn't ideal.  <span id="sdssname2" class="styledBox"></span> is located at right ascension of <span id="ra" class="styledBox"></span> decimal degrees and declination of <span id="dec" class="styledBox"></span> decimal degrees from her home planet and has a event horizon at {rs}, which is also it's schwarzchild radius.
+     s7 : `<p>
+                Umiko used to live with Faye but was then banned from ever coming pass any black hole
+                <span class="why" style="cursor: pointer;"> 
+                    (why???).
+                    <span class="hiddenwhy"> 
+                        (because universe is a crazy place.) 
+                    </span>
+                </span>
+                The nearest she could get was to the point where the gravitational acceleration due to that 
+                black hole is same as the gravitational acceleration on the surface of her home planet satellite, 
+                (according to some texts, it was known as moongo) due to her home planet which is almost 
+                <span id="gmM" class="styledBox"></span>. 
+            </p>
+            <p class="noIndent">
+                In other words next to nothing.
+            </p>
+            <p>
+                Based on the current Faye's BH, Faye was 
+                <span id="coordR" class="styledBox"></span> 
+                away from the event horizon according to Umiko measurement, meaning her radial distance from the black hole was 
+                <span id="radialD" class="styledBox"></span>.
+            </p>
+            <p>
+            Factoring in Umiko's restriction, Faye can only get as close as 
+            <span id="FayaD" class="styledBox"></span> 
+            from the center of the black hole, which meant they were 
+            <span id="distance" class="styledBox"></span> apart.
+            </p>
+            <p style="justify-self:center; text-indent:0; ">
+               <span style="text-align:center; border-bottom:1px dotted white; width:fit-content; justify-self:center; ">
+                    Worlds apart...
+                </span>
+                <br>
+                <span style="text-align:center; border-bottom:1px dotted white; text-indent:0; width:fit-content; justify-self:center; ">
+                    but not separate ways...
+                </span>
+            </p> `,
 
-            from her home planet prespective, the black hole has a comoving distance (distance between her home planet and the bh considering no expansion of the universe) of <span id="comovingDistance" class="styledBox"></span> and cosmological redshift factor of <span id="redshiftC" class="styledBox"></span> From her home planet the black hole can be seen as it was when universe was <span id="age" class="styledBox"></span> years old, because light takes time to travel.
+     s8 : `
+            <p>
+                Like any good friends who have lived in the universe together long enough, they also had a contingency plan. 
+                <span style="styledBox">
+                    "Flash messages".
+                </span>
+                The method was quite simple and as long as the laws of the universe doesn't suddenly decided to go bananas, workable.
+            </p>
+            <p>
+                The plan was to use flashes of light to send each other messages, 
+                <span class="why" style="cursor: pointer;"> 
+                    to communicate.
+                    <span class="hiddenwhy"> 
+                        (as long as one wants and try, there is always a way.) 
+                    </span>
+                </span>
+                They agreed on the following three thingies beforehand, 
+                <ul style="justify-self:center;">
+                    <li>
+                        <span class="why" style="cursor: pointer;"> 
+                            &#955; <sub>em</sub>
+                            <span class="hiddenwhy"> 
+                                (Wavelength of light observed) 
+                            </span>
+                        </span>
+                         : 
+                        <span id="obs_w" class="styledBox"></span>  
+                    </li>
+                    <li>
+                        <span class="why" style="cursor: pointer;"> 
+                            t <sub> (.) </sub>
+                            <span class="hiddenwhy"> 
+                                (Duration of a single Dot) 
+                            </span>
+                        </span>  
+                         : 
+                        <span id="t_do" class="styledBox"></span>
+                    </li>
+                    <li>
+                        <span class="why" style="cursor: pointer;"> 
+                            t <sub> (-) </sub>
+                            <span class="hiddenwhy"> 
+                                (Duration of a single Dash) 
+                            </span>
+                        </span>  
+                         : 
+                     <span id="t_da" class="styledBox"></span>
+                    </li>
+                </ul>
+            </p>
+            <p style="noIndent">
+                But when did universe ever made things easy for anyone? 
+            </p>
+            <p>
+                Due to the gravitational redshift factor of 
+                <span id="z_g" class="styledBox"></span>, 
+                in order for Faye to observe 
+                <span id="obs_w2" class="styledBox"></span>, 
+                Umiko will have to use the light of wavelength 
+                <span id="em_b" class="styledBox"></span> 
+                because it will get blueshift and will be 
+                <span id="obs_w3" class="styledBox"></span> 
+                when it reached Faye. in case of Faye, she will have to use 
+                <span id="em_a" class="styledBox"></span> 
+                because it will get redshift thanks to GR.
+            </p>
+            <p>
+                If this was not enough, for dot and dash to be 
+                <span id="t_do1" class="styledBox"></span> 
+                and 
+                <span id="t_da1" class="styledBox"></span> 
+                for Faye, Umiko would have to use durations of dot and dashes of 
+                <span id="t_oB" class="styledBox"></span> 
+                and 
+                <span id="t_daB" class="styledBox"></span> 
+                because gravitational time dilation is a thing. 
+                On the other hand, Faye would have to make her flash durations insanely small as 
+                <span id="t_oA" class="styledBox"></span> 
+                and 
+                <span id="t_daA" class="styledBox"></span>
+                for it to be same as they agreed.
+            </p>
+            <p style="noIndent"> 
+            From Umiko point of view, each message would take 
+            <span id="sig_tr_time" class="styledBox"></span> 
+            or 
+            <span id="sig_tr_timely" class="styledBox"></span> 
+            to reach and receive. (so much for that)
+            </p>`,
 
-            but that is enough about umiko. let's talk about faya.` ,
+     s9 : ` <p style="justify-self:center; text-align:center; text-indent:0;">
+            and, that was the thought experiment.
+            <br>
+                <span class="why" style="cursor: pointer;"> 
+                    what it meant and was meant to represent?
+                    <span class="hiddenwhy" style="top:0; left:0; justify-self:center;"> 
+                        (ask the cat) 
+                    </span>
+                </span>
+            </p>`
+            ,
 
-     s7 : `faya used to live with umiko but was then banned from ever coming pass any black hole (why? because universe is a crazy place). The nearest she could get was to the point where the gravitational accelaration due to that black hole is same as the gravitational accelaration on the surface of her home planet satellite, (from some text it was known as moon) due to her home planet which is almost <span id="gmM" class="styledBox"></span>. in other words next to nothing.
-
-            based on the current umiko's bh, umiko was <span id="coordR" class="styledBox"></span> away from the event horizon according to faya measurement, meaning her radial distance from the black hole was <span id="radialD" class="styledBox"></span>
-
-            factoring in faya's restriction, she can only get as close as <span id="FayaD" class="styledBox"></span> from the center of the black hole, which meant they were <span id="distance" class="styledBox"></span> apart.
-
-            worlds apart...
-            but not separate ways...`,
-
-     s8 : `like any good friends who have lived in the universe together long enough, they had a contingency plan, "flash messages".
-            The method was quite simple and as long as the laws of the universe doesn't suddenly decided to go bananas, workable.
-
-            They would uses flashes of light to send each other messages, to communicate. (there is always a way). 
-            They agreed on the wavelength of light they will use, that is <span id="obs_w" class="styledBox"></span> 
-            and the duration of a single dot, that was <span id="t_do" class="styledBox"></span> and dash that was 
-            <span id="t_da" class="styledBox"></span>.
-
-            But when did universe ever made things easy for anyone? Due to the gravitational redshift factor of 
-            <span id="z_g" class="styledBox"></span>, in order for umiko to observe <span id="obs_w2" class="styledBox"></span>, 
-            faya will have to use the light of wavelength <span id="em_b" class="styledBox"></span> because it will get blueshift and will be 
-            <span id="obs_w3" class="styledBox"></span> when it reached umiko. in case of umiko, she will have to use 
-            <span id="em_a" class="styledBox"></span> because it will get redshift thanks to GR.
-
-            If this was not good enough, for dot and dash to be <span id="t_do1" class="styledBox"></span> 
-            and <span id="t_da1" class="styledBox"></span> for umiko, faya would have to use durations of dot and dashes of 
-            <span id="t_oB" class="styledBox"></span> and <span id="t_daB" class="styledBox"></span> because 
-            gravitational time dialtion is a thing. on the other hand, umiko would have to make her flash durations insanely small as 
-            <span id="t_oA" class="styledBox"></span> and <span id="t_daA" class="styledBox"></span> for it to be same as they agreed.
-
-            From faya point of view, each message would take  <span id="sig_tr_time" class="styledBox"></span> to reach and recieve.`,
-
-     s9 : `that was the thought experiment.
-            what it meant and was meant to represent? ask the cat.`,
-
-     s10 : `based on this, to grasp the full reality of their situation and how something as simple and taken for gurranted, like talking can be complex and crazy because of how the universe works, this site further allows you to send messages, acting as faya and umiko all by yourself, that will on the outside will go immediately, but if you read the message timing, it will become cleared to you. also the message will be in morse, (on hover or hold will decoded back to english), to show how completley absurd it looks unless you know what is being said.`,
-
-     s11 : `so...`
+     s10 : `<p>
+                Based on this, to grasp the full reality of their situation and 
+                how something as simple and taken for granted, 
+                like talking can be complex and crazy because of how the universe works, 
+                this site further allows you to send messages, 
+                acting as Umiko and Faye all by yourself, 
+                that will on the outside, go immediately, but if you read the message timing, 
+                it will become cleared to you (which only takes in to account the composing time). 
+                Also the message will be in morse, which on
+                <span class="why" style="cursor: pointer;"> 
+                    hover.
+                    <span class="hiddenwhy" style=" top:70%; left:30%; justify-self:center;"> 
+                        (or hold will decode it back to english),
+                    </span>
+                </span>
+                </p>
+                <p class="noIndent">
+                    (Just to show the absurdity of it all...)
+                </p>`,
+     s11 : `so...
+            <br>
+            <button class="fallbtn" onclick="closePopup()">
+                Let's fall!
+            </button>`
 };
 
 var a = [slides.s1, slides.s2, slides.s3, slides.s4, slides.s5, slides.s6, slides.s7, slides.s8, slides.s9, slides.s10, slides.s11];
@@ -132,11 +386,11 @@ function toMorse() {
         var chrDic = charCount(morse);
         if (i === 1){
             ctime = math.evaluate('(dots * dur_dot_A) + (spc * dur_dot_A) + (dashes * dur_dash_A) to s', {dots: chrDic.dot, spc: chrDic.spc, dashes: chrDic.dash, dur_dot_A:quantitiesM.dur_dot_A, dur_dash_A: quantitiesM.dur_dash_A});
-            inputLabel.innerHTML = 'Faya';
+            inputLabel.innerHTML = 'Umiko';
             i = 0;
         }else if(i === 0){
             ctime = math.evaluate('(dots * dur_dot_B) + (spc * dur_dot_B) + (dashes * dur_dash_B) to s', {dots: chrDic.dot, spc: chrDic.spc, dashes: chrDic.dash, dur_dot_B:quantitiesM.dur_dot_B, dur_dash_B: quantitiesM.dur_dash_B});
-            inputLabel.innerHTML = 'Umiko';
+            inputLabel.innerHTML = 'Faye';
             i = 1;
         }
         
@@ -172,9 +426,9 @@ function unitConvert(magnitude, units, bhMass, bhName, bhName2, redshift) {
     var diff = massIdeal.toNumber() - massUsed;
 
     if (diff > 0) {
-    diffMass.innerHTML = 'The real mass is ' + '<span class="styledBox">' +math.format(diff, 3) + ' M<sub>&#9737;</sub> </span>' + ' larger than the ideal mass.';
+    diffMass.innerHTML = '<span class="styledBox">' +math.format(diff, 3) + ' M<sub>&#9737;</sub> </span>' + ' larger than the ideal mass.';
     } else {
-    diffMass.innerHTML = 'The real mass is ' + '<span class="styledBox">' +math.format(-diff, 3) + ' M<sub>&#9737;</sub>  </span>' + ' smaller than the ideal mass.';
+    diffMass.innerHTML = '<span class="styledBox">' +math.format(-diff, 3) + ' M<sub>&#9737;</sub>  </span>' + ' smaller than the ideal mass.';
     }
 
     var massRow = {};
@@ -193,6 +447,7 @@ function unitConvert(magnitude, units, bhMass, bhName, bhName2, redshift) {
     redshift.innerHTML = massRow.z;
     comovingDistance.innerHTML = math.format(massRow['co-d'], 3) + ' light years';
     age.innerHTML = parseFloat(massRow['age_of_un']).toFixed(3) + ' billion years';
+    rs.innerHTML = quantities.rs.format(3);
 
 }
 
@@ -339,6 +594,7 @@ function slide6change(){
     const age = document.getElementById('age');
     const bhName = document.getElementById('sdssname');
     const bhName2 = document.getElementById('sdssname2');
+    const rsB = document.getElementById('rs')
 
 
     unitConvert(magnitude, units, bhMass, bhName, bhName2, redshift);
@@ -384,6 +640,7 @@ function slide8change(){
     document.getElementById('t_oA').innerHTML = quantities8.dur_dot_A.format(3) ;
     document.getElementById('t_daA').innerHTML = quantities8.dur_dot_B.format(3) ;
     document.getElementById('sig_tr_time').innerHTML = quantities8.sig_tra_time.format(3);
+    document.getElementById('sig_tr_timely').innerHTML = quantities8.sig_tra_time.to('TrillionYears').format(3);
 }
 
 function closePopup(){
@@ -417,22 +674,49 @@ function back(){
         pageNo -= 1;
         pageNum.innerHTML = pageNo+'/11';
         myPopup.innerHTML = a[pageNo-1];
-    }    
-    if(pageNo >5 && pageNo <9){
-        eval('slide'+pageNo+'change()');
+
+        if(pageNo >5 && pageNo <9){
+            eval('slide'+pageNo+'change()');   
+            if (pageNo === 6 || pageNo === 8){
+                myPopup.style.lineHeight = 2;
+            }else{
+                myPopup.style.lineHeight = 1.7;
+            }
+    }
+        if (longPages.includes(pageNo)){
+            myPopup.style.textIndent = '4em';
+            myPopup.style.textAlign = 'justify'
+        }else {
+            myPopup.style.textIndent = '0';
+            myPopup.style.textAlign = 'center'
+        }
     }
 }
 
 function forward(){
+
     if (pageNo <12){
         pageNo += 1;
         pageNum.innerHTML = pageNo +'/11';
         myPopup.innerHTML = a[pageNo-1];
-    }
-    if(pageNo >5 && pageNo <9){
-        eval('slide'+pageNo+'change()');
-    } else if (pageNo > 11){
-        closePopup()
+
+        if(pageNo >5 && pageNo <9){
+            eval('slide'+pageNo+'change()');
+            if (pageNo === 6 || pageNo === 8){
+                myPopup.style.lineHeight = 2;
+            }else{
+                myPopup.style.lineHeight = 1.7;
+            }
+        } else if (pageNo > 11){
+            closePopup();
+        }
+        if (longPages.includes(pageNo)){
+            myPopup.style.textIndent = '4em';
+            myPopup.style.textAlign = 'justify'
+        }else{
+            myPopup.style.textIndent = '0';
+            myPopup.style.textAlign = 'center'
+        }
     }
 }
 
@@ -467,6 +751,9 @@ myInput.addEventListener("keydown", function(event) {
       window.scrollTo(0, output.scrollHeight)
     }
 });
+
+
+
 
 closeB.addEventListener('mouseover', () => {
     closeB.setAttribute('title', 'close');
